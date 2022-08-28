@@ -1,0 +1,9 @@
+export {default as Account} from './account/Account';
+export {default as Categories} from './categories/Categories';
+export {default as Dashboard} from './dashboard/Dashboard';
+export {default as Home} from './home/Home';
+export {default as NotFound} from './not-found/NotFound';
+export {default as SignIn} from './sign-in/SignIn';
+export {default as SignUp} from './sign-up/SignUp';
+export {default as Tasks} from './tasks/Tasks';
+export {default as User} from './user/User';
