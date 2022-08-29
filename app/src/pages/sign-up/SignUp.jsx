@@ -5,10 +5,13 @@ import {Input} from '../../components/core';
 import {FcGoogle} from 'react-icons/fc';
 import {BsFacebook} from 'react-icons/bs';
 
+import {useNavigate}  from 'react-router-dom';
+
+
 const SignUp = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
-
+  const navigate = useNavigate();
   return (
     <div
       className='h-full flex items-center justify-center'
@@ -67,12 +70,13 @@ const SignUp = () => {
           <span className='sm:text-2xl lg:text-sm text-gray-400'>
             Already registered ? 
           </span>
-          <Button 
-            className='underline sm:text-2xl lg:text-sm text-gray-200'
+          <span 
+            className='sm:text-2xl lg:text-sm text-gray-200 cursor-pointer hover:text-blue-400 hover:underline ml-2'
             variant='text'
+            onClick={() => navigate('/sign-in')}
           >
             Login
-          </Button>
+          </span>
         </div>
       </div>
     </div>
