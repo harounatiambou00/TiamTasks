@@ -11,14 +11,17 @@ module.exports = {
 
         },
         'dark': {
-          'background': '#040406',
-          'elevation': '#202020',
+          'background': '#181820',
+          'elevation': '#21212b',
         }
       },
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],
         source_code_pro: ['Source Sans Pro', 'sans-serif'],
       },
+      height:{
+        landing_page_img : "40rem",
+      }
     },
   },
   plugins: [],
