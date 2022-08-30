@@ -48,7 +48,11 @@ const SignUp = () => {
         <form>
           <Input 
             type='text'
-            label='Name'
+            label='First Name'
+          />
+          <Input 
+            type='text'
+            label='Last Name'
           />
           <Input 
             type='text'
