@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {Button} from '@mui/material';
 import {Input} from '../../components/core';
 import {FcGoogle} from 'react-icons/fc';
 import {BsFacebook} from 'react-icons/bs';
@@ -11,7 +10,50 @@ import {useNavigate}  from 'react-router-dom';
 const SignUp = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
+  const [emailAlreadyExists, setEmailAlreadyExists] = React.useState(false);
   const navigate = useNavigate();
+
+  const [values, setValues] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const register = async (e) => {
+    e.preventDefault();
+    const url = 'https://localhost:7122/api/user/sign-up';
+    let user = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password
+    }
+    let response = await fetch(url,{
+      method : "POST",
+      body : JSON.stringify(user),
+      credentials : 'include',
+      headers : {
+        "Content-Type": "application/json",
+      }
+    });
+
+    let content = await response.json();
+    if(content.success){
+      setEmailAlreadyExists(false);
+      let verificationToken = content.data;
+      console.log(content);
+    }else{
+      if(content.message === "EMAIL_ALREADY_EXISTS"){
+          setEmailAlreadyExists(true);
+      }
+    }
+  }
+
   return (
     <div
       className='h-full flex items-center justify-center'
@@ -45,27 +87,39 @@ const SignUp = () => {
         >
           or
         </p>
-        <form>
+        <form
+          onSubmit={register}
+        >
           <Input 
             type='text'
             label='First Name'
+            value={values.firstName}
+            handleChange={handleChange('firstName')}
           />
           <Input 
             type='text'
             label='Last Name'
+            value={values.lastName}
+            handleChange={handleChange('lastName')}
           />
           <Input 
             type='text'
             label='Email'
+            value={values.email}
+            handleChange={handleChange('email')}
+            emailAlreadyExists={emailAlreadyExists}
           />
           <Input 
             type='password'
             label='Password'
             showPassword={showPassword}
             setShowPassword={setShowPassword}
+            value={values.password}
+            handleChange={handleChange('password')}
           />
           <button
             className='font-bold sm:my-10 lg:my-3 rounded-xl bg-pink-600 w-full sm:h-28 sm:text-4xl lg:h-10 lg:text-base tracking-wide'
+            type='submit'
           >
             Sign up
           </button>

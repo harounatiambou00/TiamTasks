@@ -1,6 +1,10 @@
 ﻿using api.DTOs.User;
 using api.Models;
+using api.Services.EmailService;
 using api.Services.JwtService;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MimeKit.Text;
 using System;
 using System.Security.Cryptography;
 
@@ -10,10 +14,13 @@ namespace api.Services.UserService
     {
         private readonly DataContext _db;
         private readonly IJwtService _jwtService;
-        public UserService(DataContext db, IJwtService jwtService)
+        private readonly IEmailService _emailService;
+
+        public UserService(DataContext db, IJwtService jwtService, IEmailService emailService)
         {
             _db = db;
-            _jwtService = jwtService;   
+            _jwtService = jwtService;
+            _emailService = emailService;
         }
 
         public async Task<ServiceResponse<string?>> DeleteUser(int id)
@@ -175,7 +182,7 @@ namespace api.Services.UserService
                 {
                     Data = verificationToken,
                     Success = true,
-                    Message = "USER_CREATED_SUCCESSFULLY"
+                    Message = " "
                 };
             }
             else
@@ -306,6 +313,18 @@ namespace api.Services.UserService
                     Message = "INVALID_TOKEN"
                 };
             }
+        }
+
+        public ServiceResponse<string?> SendVerificationEmail(SendVerificationEmailDTO request)
+        {
+            string email_body = "Please confirm your email address <a href=\"#URL#\"> Click here </a>";
+            string url = "http://localhost:3000/confirm-email/" + request.Token;
+
+            string body = email_body.Replace("#URL#", System.Text.Encodings.Web.HtmlEncoder.Default.Encode(url));
+
+            var response = _emailService.SendEmail(request.Email, "Email Verification", body);
+
+            return response;
         }
     }
 }

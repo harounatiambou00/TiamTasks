@@ -142,5 +142,11 @@ namespace api.Controllers
             var serviceResponse = await _userService.UpdateUser(request);
             return serviceResponse;
         }
+
+        [HttpPost("send-verification-email")]
+        public ActionResult<ServiceResponse<string?>> SendVerificationEmail(SendVerificationEmailDTO request)
+        {
+            return Ok(_userService.SendVerificationEmail(request));
+        }
     }
 }

@@ -7,3 +7,4 @@ export {default as SignIn} from './sign-in/SignIn';
 export {default as SignUp} from './sign-up/SignUp';
 export {default as Tasks} from './tasks/Tasks';
 export {default as User} from './user/User';
+export {default as VerifyEmail} from './verify-email/VerifyEmail';

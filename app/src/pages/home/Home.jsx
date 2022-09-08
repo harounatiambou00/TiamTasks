@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { Navbar } from '../../components/home-page-components';
 
@@ -8,9 +8,15 @@ import {Button} from '@mui/material';
 
 import {useNavigate} from 'react-router-dom';
 
+import { AppContext } from '../../context/AppContext';
+
 const Home = () => {
 
   const navigate = useNavigate();
+
+  const {user} = useContext(AppContext);
+  if(user !== null)
+    navigate("/user")
 
   return (
     <div

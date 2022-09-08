@@ -3,7 +3,7 @@ import React from 'react';
 import {IconButton} from '@mui/material';
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
 
-const Input = ({inputId, labelId, type, label, autofocus=false, value, handleChange, showPassword, setShowPassword}) => {
+const Input = ({inputId, labelId, type, label, autofocus=false, value, handleChange, showPassword, setShowPassword, emailAlreadyExists, errorMessage}) => {
 
 
 
@@ -18,7 +18,7 @@ const Input = ({inputId, labelId, type, label, autofocus=false, value, handleCha
                     id={labelId}
                 >
                     <span>
-                        {label}
+                        {label} 
                     </span>
                     <IconButton
                         className='text-gray-300 sm:text-6xl lg:text-xl'
@@ -32,8 +32,9 @@ const Input = ({inputId, labelId, type, label, autofocus=false, value, handleCha
                     type={showPassword? 'text' : 'password'}
                     value={value}
                     onChange={handleChange}
-                    className='w-full bg-inherit border-2 border-gray-400 text-gray-400 sm:text-3xl lg:text-base pl-3 rounded-xl sm:h-24 lg:h-11 outline-none focus:border-pink-500 hover:border-pink-500'
+                    className='w-full bg-inherit border-2 border-gray-400 text-gray-400 sm:text-3xl lg:text-base pl-3 rounded-xl sm:h-24 lg:h-11 outline-none focus:border-fuchsia-700 hover:border-fuchsia-700'
                 />
+                <span className='text-red-400 sm:text-2xl lg:text-sm'>{errorMessage !== null && errorMessage }</span>
             </div>
         )
     }
@@ -54,8 +55,9 @@ const Input = ({inputId, labelId, type, label, autofocus=false, value, handleCha
                 type={type}
                 value={value}
                 onChange={handleChange}
-                className='w-full bg-inherit border-2 border-gray-400 text-gray-400 sm:text-3xl lg:text-base pl-3 rounded-xl sm:h-24 lg:h-11 outline-none focus:border-pink-500 hover:border-pink-500'
+                className='w-full bg-inherit border-2 border-gray-400 text-gray-400 sm:text-3xl lg:text-base pl-3 rounded-xl sm:h-24 lg:h-11 outline-none focus:border-fuchsia-700 hover:border-fuchsia-700'
             />
+            <span className='text-red-400 sm:text-2xl lg:text-sm'>{errorMessage !== null && errorMessage }</span>
         </div>
     )
 }

@@ -15,5 +15,6 @@ namespace api.Services.UserService
         Task<ServiceResponse<string?>> VerifyEmail(string token);
         Task<ServiceResponse<string?>> ForgotPassword(string email);
         Task<ServiceResponse<string?>> ResetPassword(ResetPasswordDTO request);
+        ServiceResponse<string?> SendVerificationEmail(SendVerificationEmailDTO request);
     }
 }

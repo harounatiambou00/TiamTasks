@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Button} from '@mui/material';
 import {Input} from '../../components/core';
@@ -9,7 +9,60 @@ import {useNavigate}  from 'react-router-dom';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [userNotVerified, setUserNotVerified] = useState(false);
+  const [userNotFound, setUserNotFound] = useState(false);
+  const [incorrectPassword, setIncorrectPassword] = useState(false);
   const navigate = useNavigate();
+  
+  const [values, setValues] = React.useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const login =  async(e) => {
+    e.preventDefault();
+    const url = 'https://localhost:7122/api/user/sign-in';
+    let request = {
+      email: values.email,
+      password: values.password,
+      remenberMe: true
+    };
+
+    let response = await fetch(url,{
+      method : "POST",
+      body : JSON.stringify(request),
+      credentials : 'include',
+      headers : {
+        "Content-Type": "application/json",
+      }
+    });
+
+    let content = await response.json();
+    console.log(content);
+    if(content.success)
+      navigate('/')
+    else{
+      if(content.message === "USER_NOT_FOUND"){
+        setUserNotFound(true);
+        setUserNotVerified(false);
+        setIncorrectPassword(false);
+      }else if(content.message === "USER_NOT_VERIFIED"){
+        setUserNotFound(false);
+        setUserNotVerified(true);
+        setIncorrectPassword(false);
+      }
+      else if(content.message === "INCORRECT_PASSWORD"){
+        setUserNotFound(false);
+        setUserNotVerified(false);
+        setIncorrectPassword(true);
+      }
+    }
+  }
+
   return (
     <div
       className='h-full flex items-center justify-center'
@@ -43,17 +96,59 @@ const SignIn = () => {
         >
           or
         </p>
-        <form>
-          <Input 
-            type='text'
-            label='Email'
-          />
-          <Input 
-            type='password'
-            label='Password'
-            showPassword={showPassword}
-            setShowPassword={setShowPassword}
-          />
+        <form
+          onSubmit={login}
+        >
+          {
+            userNotFound && 
+            <Input 
+              type='text'
+              label='Email'
+              value={values.email}
+              handleChange={handleChange('email')}
+              errorMessage = "There is no account registered with this email address."
+            />
+          }
+          {
+            !userNotFound && userNotVerified &&
+            <Input 
+              type='text'
+              label='Email'
+              value={values.email}
+              handleChange={handleChange('email')}
+              errorMessage = "You have not verified your email yet. Checkout your email inbox and spams for the verification link."
+            />
+          }{
+            !userNotFound && !userNotVerified &&
+            <Input 
+              type='text'
+              label='Email'
+              value={values.email}
+              handleChange={handleChange('email')}
+              errorMessage={null}
+            />
+          }
+          {
+            incorrectPassword ? <Input 
+              type='password'
+              label='Password'
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+              value={values.password}
+              handleChange={handleChange('password')}
+              errorMessage = "Incorrect Password"
+            /> 
+            : 
+            <Input 
+              type='password'
+              label='Password'
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+              value={values.password}
+              handleChange={handleChange('password')}
+              errorMessage={null}
+            />
+          }
           <small
             className='sm:text-3xl lg:text-sm flex justify-end cursor-pointer underline hover:text-blue-400'
           >

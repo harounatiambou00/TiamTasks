@@ -61,3 +61,7 @@ C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Sy
 C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\MailKit.dll
+C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\MimeKit.dll
+C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Workflow\tiamtasks\api\api\bin\Debug\net6.0\RestSharp.dll

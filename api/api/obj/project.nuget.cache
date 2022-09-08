@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y+XIJi8L3iTd2wA2PhgKRtAo5ICG2fLiJOqHUSFS6/1zBHIRPNiE+jLK/RHWWmS9z8b7NF0QO+96fDv6UskuLA==",
+  "dgSpecHash": "eJXxCfmOWsLm9J2CK0Rs+KLzAONgADJRlqrfiSWR/pyCdFhusLQhX7MbxA8/K4bC7u+61rGIp19C6RXizrxa2Q==",
   "success": true,
   "projectFilePath": "C:\\Workflow\\tiamtasks\\api\\api\\api.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\harou\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\harou\\.nuget\\packages\\mimekit\\3.3.0\\mimekit.3.3.0.nupkg.sha512",
     "C:\\Users\\harou\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\harou\\.nuget\\packages\\restsharp\\108.0.1\\restsharp.108.0.1.nupkg.sha512",
     "C:\\Users\\harou\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\harou\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\harou\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
